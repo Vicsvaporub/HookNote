@@ -4,6 +4,8 @@ gi.require_version("Gtk", "4.0")
 
 from gi.repository import Gtk
 
+from ui.main_window import MainWindow
+
 
 class HookNote(Gtk.Application):
 
@@ -14,25 +16,8 @@ class HookNote(Gtk.Application):
 
     def do_activate(self):
 
-        window = Gtk.ApplicationWindow(
-            application=self
-        )
-
-        window.set_title(
-            "🧶 HookNote"
-        )
-
-        window.set_default_size(
-            900,
-            600
-        )
-
-        label = Gtk.Label(
-            label="Welcome to HookNote 🧶"
-        )
-
-        window.set_child(
-            label
+        window = MainWindow(
+            self
         )
 
         window.present()
