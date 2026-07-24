@@ -60,3 +60,42 @@ class Project:
                 file,
                 indent=4
             )
+
+    @classmethod
+    def load(cls, folder):
+
+        folder = Path(folder)
+
+        project_file = folder / "project.json"
+
+        with open(
+            project_file,
+            "r",
+            encoding="utf-8"
+        ) as file:
+
+            data = json.load(file)
+
+        project = cls(
+            folder,
+            data["title"]
+        )
+
+        project.created = data.get(
+            "created"
+        )
+
+        project.modified = data.get(
+            "modified"
+        )
+
+        project.tags = data.get(
+            "tags",
+            []
+        )
+
+        project.cover_image = data.get(
+            "cover_image"
+        )
+
+        return project
